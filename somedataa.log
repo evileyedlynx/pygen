@@ -1,0 +1,128 @@
+root - INFO - Selected count prefix. filename: somedataa_5
+root - INFO - Scheme loaded from file: {'date': 'timestamp:', 'name': 'str:rand', 'type': "str:['client', 'partner', 'government']", 'age': 'int:rand(1, 90)'}
+root - INFO - ./results/somedataa_11.jsonl deleted
+root - INFO - ./results/somedataa_11_1.jsonl deleted
+root - INFO - for date setted timestamp type
+root - WARNING - timestamp type does not support any values and ignored
+root - INFO - date initialize successful
+root - INFO - for name setted str type
+root - INFO - name initialize successful
+root - INFO - for type setted str type
+root - INFO - type initialize successful
+root - INFO - for age setted int type
+root - INFO - age initialize successful
+root - INFO - Successful parse json to Nodes
+root - INFO - ./results/somedataa_5.jsonl created
+root - INFO - Starting generate data. count: 5
+root - INFO - for date generated 1656494300.115724
+root - INFO - for name generated c1f5e76d-68e7-4dd3-9f14-bc613320f7de
+root - INFO - for type generated partner
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 45
+root - INFO - data made: {'date': 1656494300.115724, 'name': 'c1f5e76d-68e7-4dd3-9f14-bc613320f7de', 'type': 'partner', 'age': 45}
+root - INFO - data writed in file
+root - INFO - made 1/5 datas. made 1 files
+root - INFO - Created new file ./results/somedataa_5_1.jsonl
+root - INFO - for date generated 1656494300.1347241
+root - INFO - for name generated 9304ad5f-11c7-4890-af5d-78b40feec09c
+root - INFO - for type generated government
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 14
+root - INFO - data made: {'date': 1656494300.1347241, 'name': '9304ad5f-11c7-4890-af5d-78b40feec09c', 'type': 'government', 'age': 14}
+root - INFO - data writed in file
+root - INFO - made 2/5 datas. made 2 files
+root - INFO - Created new file ./results/somedataa_5_2.jsonl
+root - INFO - for date generated 1656494300.1486332
+root - INFO - for name generated 143c94c0-0546-44dc-ab91-cfd673a428c8
+root - INFO - for type generated government
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 8
+root - INFO - data made: {'date': 1656494300.1486332, 'name': '143c94c0-0546-44dc-ab91-cfd673a428c8', 'type': 'government', 'age': 8}
+root - INFO - data writed in file
+root - INFO - made 3/5 datas. made 3 files
+root - INFO - Created new file ./results/somedataa_5_3.jsonl
+root - INFO - for date generated 1656494300.1595736
+root - INFO - for name generated d44daf0d-9e8c-4873-9480-6261e488f8b9
+root - INFO - for type generated partner
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 90
+root - INFO - data made: {'date': 1656494300.1595736, 'name': 'd44daf0d-9e8c-4873-9480-6261e488f8b9', 'type': 'partner', 'age': 90}
+root - INFO - data writed in file
+root - INFO - made 4/5 datas. made 4 files
+root - INFO - Created new file ./results/somedataa_5_4.jsonl
+root - INFO - for date generated 1656494300.1719997
+root - INFO - for name generated 68aa8a6c-121c-484c-8713-9228778fc8c2
+root - INFO - for type generated client
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 45
+root - INFO - data made: {'date': 1656494300.1719997, 'name': '68aa8a6c-121c-484c-8713-9228778fc8c2', 'type': 'client', 'age': 45}
+root - INFO - data writed in file
+root - INFO - made 5/5 datas. made 5 files
+root - ERROR - path does not exist
+root - INFO - Selected count prefix. filename: somedataa_5
+root - INFO - Scheme loaded from file: {'date': 'timestamp', 'name': 'str:rand', 'type': "str:['client', 'partner', 'government']", 'age': 'int:rand(1, 90)'}
+root - INFO - ./results/somedataa_5.jsonl deleted
+root - INFO - ./results/somedataa_5_1.jsonl deleted
+root - INFO - ./results/somedataa_5_2.jsonl deleted
+root - INFO - ./results/somedataa_5_3.jsonl deleted
+root - INFO - ./results/somedataa_5_4.jsonl deleted
+root - INFO - for date setted timestamp type
+root - ERROR - Index error when try set data_generate_rule: list index out of range
+root - INFO - Selected count prefix. filename: somedataa_5
+root - INFO - Scheme loaded from file: {'date': 'timestamp:', 'name': 'str:rand', 'type': "str:['client', 'partner', 'government']", 'age': 'int:rand(1, 90)'}
+root - INFO - for date setted timestamp type
+root - WARNING - timestamp type does not support any values and ignored
+root - INFO - date initialize successful
+root - INFO - for name setted str type
+root - INFO - name initialize successful
+root - INFO - for type setted str type
+root - INFO - type initialize successful
+root - INFO - for age setted int type
+root - INFO - age initialize successful
+root - INFO - Successful parse json to Nodes
+root - INFO - ./results/somedataa_5.jsonl created
+root - INFO - Starting generate data. count: 5
+root - INFO - for date generated 1656495097.8723772
+root - INFO - for name generated dbc6bb53-3058-45b1-b8de-605c80db7f2f
+root - INFO - for type generated partner
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 47
+root - INFO - data made: {'date': 1656495097.8723772, 'name': 'dbc6bb53-3058-45b1-b8de-605c80db7f2f', 'type': 'partner', 'age': 47}
+root - INFO - data writed in file
+root - INFO - made 1/5 datas. made 1 files
+root - INFO - Created new file ./results/somedataa_5_1.jsonl
+root - INFO - for date generated 1656495097.8836522
+root - INFO - for name generated e4b54e9e-3789-471b-b5d5-f310f5909233
+root - INFO - for type generated government
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 79
+root - INFO - data made: {'date': 1656495097.8836522, 'name': 'e4b54e9e-3789-471b-b5d5-f310f5909233', 'type': 'government', 'age': 79}
+root - INFO - data writed in file
+root - INFO - made 2/5 datas. made 2 files
+root - INFO - Created new file ./results/somedataa_5_2.jsonl
+root - INFO - for date generated 1656495097.900926
+root - INFO - for name generated c6d7b899-6448-47bd-94b4-dbe233069178
+root - INFO - for type generated partner
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 50
+root - INFO - data made: {'date': 1656495097.900926, 'name': 'c6d7b899-6448-47bd-94b4-dbe233069178', 'type': 'partner', 'age': 50}
+root - INFO - data writed in file
+root - INFO - made 3/5 datas. made 3 files
+root - INFO - Created new file ./results/somedataa_5_3.jsonl
+root - INFO - for date generated 1656495097.9117827
+root - INFO - for name generated 1133b006-80f4-4923-93d7-51a70bb3d434
+root - INFO - for type generated partner
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 7
+root - INFO - data made: {'date': 1656495097.9117827, 'name': '1133b006-80f4-4923-93d7-51a70bb3d434', 'type': 'partner', 'age': 7}
+root - INFO - data writed in file
+root - INFO - made 4/5 datas. made 4 files
+root - INFO - Created new file ./results/somedataa_5_4.jsonl
+root - INFO - for date generated 1656495097.9235437
+root - INFO - for name generated af57b3b1-c430-450e-9a83-79ebe4827c4a
+root - INFO - for type generated client
+root - INFO - Specified data type is not list: name 'rand' is not defined
+root - INFO - for age generated 69
+root - INFO - data made: {'date': 1656495097.9235437, 'name': 'af57b3b1-c430-450e-9a83-79ebe4827c4a', 'type': 'client', 'age': 69}
+root - INFO - data writed in file
+root - INFO - made 5/5 datas. made 5 files

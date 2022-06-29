@@ -87,7 +87,7 @@ class DataGenerator:
             try:
                 f.write(f'{json_data}\n')
                 if self._show_write_in_file:
-                    log.info(f'data writed in file')
+                    log.info(f'data written in file')
             except Exception as e:
                 log.error(f'Error when try write data in file: {e}')
             lines_count += 1
