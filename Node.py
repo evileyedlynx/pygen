@@ -50,7 +50,7 @@ class Node:
         ]
         if value in accepted_values:
             self._node_type = value
-            log.info(f'for {self.node_name} setted {value} type')
+            log.info(f'for {self.node_name} set {value} type')
         else:
             log.error(f'Error when try set node_type. Unknown type: {value}')
 
