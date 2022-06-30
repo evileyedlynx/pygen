@@ -17,5 +17,6 @@ class TestNode(unittest.TestCase):
         self.node.data_generate_rule = '["item"]'
         self.assertIn(self.node.generate_data(), ["item", "data", "store"])
 
+
 if __name__ == "__main__":
-  unittest.main()
+    unittest.main()

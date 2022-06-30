@@ -14,7 +14,14 @@ class DataGenerator:
     _show_write_in_file = None
     _generate_node_log = None
 
-    def __init__(self, scheme: str, path_to_save_files: str, files_count: int, file_name: str, data_lines: int, show_generated_data=False, show_write_in_file=False, generate_node_log=False):
+    def __init__(self, scheme: str,
+                 path_to_save_files: str,
+                 files_count: int,
+                 file_name: str,
+                 data_lines: int,
+                 show_generated_data=False,
+                 show_write_in_file=False,
+                 generate_node_log=False):
         self._path_to_save_files = path_to_save_files
         self._files_count = files_count
         self._file_name = file_name
@@ -27,14 +34,13 @@ class DataGenerator:
     def parse_json_to_node(self, json_scheme):
         try:
             for data in json_scheme:
-#                node_name = data
                 schema = json_scheme.get(data)
-                if schema: #is not None:
+                if schema:
                     node = Node(data, schema, self._generate_node_log)
                     self.add_value_in_nodes(node)
                 else:
                     log.error('Scheme is None')
-            log.info(f'Successful parse json to Nodes')
+            log.info(f'{"Successful parse json to Nodes"}')
         except Exception as e:
             log.error(f'Error when parse schema: {str(e)}')
 
@@ -76,8 +82,7 @@ class DataGenerator:
             try:
                 node_result = {}
                 for node in self.nodes:
-#                    node_result.update({node.node_name: node.generate_data()})
-                    node_result[node.node_name] =  node.generate_data()
+                    node_result[node.node_name] = node.generate_data()
                 json_data = json.dumps(node_result)
                 if self._show_generated_data:
                     log.info(f'data made: {node_result}')
@@ -87,7 +92,7 @@ class DataGenerator:
             try:
                 f.write(f'{json_data}\n')
                 if self._show_write_in_file:
-                    log.info(f'data written in file')
+                    log.info(f'{"data written in file"}')
             except Exception as e:
                 log.error(f'Error when try write data in file: {e}')
             lines_count += 1
@@ -95,4 +100,4 @@ class DataGenerator:
             log.info(f'made {str(all_lines_count)}/{str(self._files_count)} datas. made {file_count} files')
             # print(node_result)
 
-        print(f'Data generation ended')
+        print(f'{"Data generation ended"}')
