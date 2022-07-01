@@ -165,5 +165,6 @@ cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
-.log
-results/
+*.log
+results/**
+.DS_store
