@@ -59,29 +59,33 @@ class DataGenerator:
         lines_count = 0
         file_count = 1
         all_lines_count = 0
-        try:
-            file_path = f'{self._path_to_save_files}/{self._file_name}.jsonl'
-            f = open(file_path, 'w+', encoding='utf-8')
-            log.info(f'{file_path} created')
-        except Exception as e:
-            log.error(f'Failed create file {file_path}: {e}')
+        file_path = f'{self._path_to_save_files}/{self._file_name}.jsonl'
+#        try:
+#            file_path = f'{self._path_to_save_files}/{self._file_name}.jsonl'
+#            f = open(file_path, 'w+', encoding='utf-8')
+#            log.info(f'{file_path} created')
+#        except Exception as e:
+#            log.error(f'Failed create file {file_path}: {e}')
         log.info(f'Starting generate data. count: {self._files_count}')
         for amount in range(self._files_count):
             try:
                 if lines_count >= self._data_lines:
-                    f.close()
-                    new_file_path = f'{self._path_to_save_files}/{self._file_name}_{str(file_count)}.jsonl'
-                    f = open(new_file_path, 'w+', encoding='utf-8')
+#                    f.close()
+#                    new_file_path = f'{self._path_to_save_files}/{self._file_name}_{str(file_count)}.jsonl'
+                    file_path = f'{self._path_to_save_files}/{self._file_name}_{str(file_count)}.jsonl'
+#                    f = open(new_file_path, 'w+', encoding='utf-8')
                     file_count += 1
                     lines_count = 0
                     if self._show_write_in_file:
-                        log.info(f'Created new file {new_file_path}')
+#                        log.info(f'Created new file {new_file_path}')
+                        log.info(f'Created new file {file_path}')
             except Exception as e:
                 log.error(f'Failed create new file: {e}')
 
             try:
                 node_result = {}
                 for node in self.nodes:
+#                    node_result.update({node.node_name: node.generate_data()})
                     node_result[node.node_name] = node.generate_data()
                 json_data = json.dumps(node_result)
                 if self._show_generated_data:
@@ -90,7 +94,9 @@ class DataGenerator:
                 log.error(f'Error generating data: {e}')
 
             try:
+                f = open(file_path, 'a', encoding='utf-8')
                 f.write(f'{json_data}\n')
+                f.close()
                 if self._show_write_in_file:
                     log.info(f'{"data written in file"}')
             except Exception as e:
@@ -100,4 +106,4 @@ class DataGenerator:
             log.info(f'made {str(all_lines_count)}/{str(self._files_count)} datas. made {file_count} files')
             # print(node_result)
 
-        print(f'{"Data generation ended"}')
+        print(f'Data generation ended')

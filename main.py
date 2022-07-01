@@ -65,7 +65,8 @@ def main():
                         log.info('Did not use prefix')
 
                 scheme = read_json(args.data_schema)
-                if scheme is None:
+#                if scheme is None:
+                if not scheme:
                     try:
                         with open(args.data_schema) as f:
                             scheme = json.load(f)
