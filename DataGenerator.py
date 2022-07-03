@@ -22,6 +22,18 @@ class DataGenerator:
                  show_generated_data=False,
                  show_write_in_file=False,
                  generate_node_log=False):
+        """
+        Datagenereator object init.
+
+        :param scheme: object generation scheme.
+        :param path_to_save_files: path for saving files.
+        :param files_count: amount of files to generate.
+        :param file_name: base file names.
+        :param data_lines: amount of strings with generated data in created files.
+        :param show_generated_data: flag to show log of DataGenerator. False by default.
+        :param show_write_in_file: flag to show data written in file. False by default.
+        :param generate_node_log: flag to show log of "Node" class work. False by default.
+        """
         self._path_to_save_files = path_to_save_files
         self._files_count = files_count
         self._file_name = file_name
@@ -32,6 +44,11 @@ class DataGenerator:
         self.parse_json_to_node(scheme)
 
     def parse_json_to_node(self, json_scheme):
+        """
+        Parse json schema to Node objects.
+
+        :param json_scheme: json data scheme file. ./schemas/main.json by default.
+        """
         try:
             for data in json_scheme:
                 schema = json_scheme.get(data)
@@ -46,16 +63,23 @@ class DataGenerator:
 
     @property
     def nodes(self):
+        """Getter of self._nodes var."""
         return self._nodes
 
     @nodes.setter
     def nodes(self, value):
+        """Setter of self._nodes var."""
         self._nodes = value
 
     def add_value_in_nodes(self, value: Node):
+        """Adding var to self._nodes."""
         self._nodes.append(value)
 
     def generate_data(self):
+        """
+        Data generation based on created Node object
+        Writing result based on set parameters
+        """
         lines_count = 0
         file_count = 1
         all_lines_count = 0
@@ -82,28 +106,29 @@ class DataGenerator:
             except Exception as e:
                 log.error(f'Failed create new file: {e}')
 
-            try:
-                node_result = {}
-                for node in self.nodes:
-#                    node_result.update({node.node_name: node.generate_data()})
-                    node_result[node.node_name] = node.generate_data()
-                json_data = json.dumps(node_result)
-                if self._show_generated_data:
-                    log.info(f'data made: {node_result}')
-            except Exception as e:
-                log.error(f'Error generating data: {e}')
+            for line in range(self._data_lines):
+                try:
+                    node_result = {}
+                    for node in self.nodes:
 
-            try:
-                f = open(file_path, 'a', encoding='utf-8')
-                f.write(f'{json_data}\n')
-                f.close()
-                if self._show_write_in_file:
-                    log.info(f'{"data written in file"}')
-            except Exception as e:
-                log.error(f'Error when try write data in file: {e}')
-            lines_count += 1
-            all_lines_count += 1
-            log.info(f'made {str(all_lines_count)}/{str(self._files_count)} datas. made {file_count} files')
-            # print(node_result)
+                        node_result[node.node_name] = node.generate_data()
+                    json_data = json.dumps(node_result)
+                    if self._show_generated_data:
+                        log.info(f'data made: {node_result}')
+                except Exception as e:
+                    log.error(f'Error generating data: {e}')
+
+                try:
+                    f = open(file_path, 'a', encoding='utf-8')
+                    f.write(f'{json_data}\n')
+                    f.close()
+                    if self._show_write_in_file:
+                        log.info(f'{"data written in file"}')
+                except Exception as e:
+                    log.error(f'Error when try write data in file: {e}')
+                lines_count += 1
+                all_lines_count += 1
+                log.info(f'made {str(all_lines_count)}/{str(self._files_count)} datas. made {file_count} files')
+                # print(node_result)
 
         print(f'Data generation ended')

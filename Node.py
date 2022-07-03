@@ -12,6 +12,12 @@ class Node:
     _generate_node_log = None
 
     def __init__(self, node_name: str, scheme: str, generate_node_log=False):
+        """
+        Object init.
+        :param node_name: Name of value.
+        :param scheme: Data generation scheme.
+        :param generate_node_log: Show data generation log. False by default.
+        """
         self._generate_node_log = generate_node_log
         self.node_name = node_name
         node_data = scheme.split(':')
@@ -31,18 +37,22 @@ class Node:
 
     @property
     def node_name(self) -> str:
+        """Getter of var self._node_name."""
         return self._node_name
 
     @node_name.setter
     def node_name(self, value: str):
+        """Setter of var self._node_name."""
         self._node_name = value
 
     @property
     def node_type(self) -> str:
+        """Getter of var self._node_type."""
         return self._node_type
 
     @node_type.setter
     def node_type(self, value):
+        """Setter of var self._node_type."""
         accepted_values = [
             'timestamp',
             'str',
@@ -56,13 +66,20 @@ class Node:
 
     @property
     def data_generate_rule(self):
+        """Getter of var self._data_generate_rule."""
         return self._data_generate_rule
 
     @data_generate_rule.setter
     def data_generate_rule(self, value):
+        """Setter of var self._data_generate_rule."""
         self._data_generate_rule = value
 
     def generate_data(self):
+        """
+        Data generation based on scheme, transferred here at the object initialization time.
+
+        :return: Returns generated data.
+        """
         result = None
         try:
             if self.node_type == 'timestamp':

@@ -29,17 +29,51 @@ def main():
     log_in_file = config.getboolean('DEFAULT', 'log_in_file')
 
     parser = argparse.ArgumentParser(description='CU for generating data by scheme')
-    parser.add_argument('--path_to_save_files', help="Where all the files will be saved", type=str, default=path_to_save_files)
-    parser.add_argument('--files_count', help="How many json files to generate", type=int, default=files_count)
-    parser.add_argument('--file_name', help="Base file_name. If no prefix, final file name will be file_name.json. With prefix full file name will be file_name_file_prefix.json", type=str, default=file_name)
-    parser.add_argument('--file_prefix', help="What prefix for file name to use if more than 1 file needs to be generated", choices=prefixes, type=str)
-    parser.add_argument('--data_schema', help="It’s a string with json schema", type=str, default=data_schema)
-    parser.add_argument('--data_lines', help="Count of lines for each file", type=int, default=data_lines)
-    parser.add_argument('--clear_path', help="If this flag is on, before the script starts creating new data files, all files in path_to_save_files that match file_name will be deleted.", default=clear_path, action='store_true')
-    parser.add_argument('--show_generated_data', help="If this flag is on, show generated data in console.", default=show_generated_data, action='store_true')
-    parser.add_argument('--show_write_in_file', help="If this flag is on, show log when data write in file.", default=show_write_in_file, action='store_true')
-    parser.add_argument('--show_generate_node_log', help="If this flag is on, node generation log.", default=show_generate_node_log, action='store_true')
-    parser.add_argument('--log_in_file', help="If this flag is on, enable logging in file.", default=log_in_file, action='store_true')
+    parser.add_argument('--path_to_save_files',
+                        help="Where all the files will be saved",
+                        type=str,
+                        default=path_to_save_files)
+    parser.add_argument('--files_count',
+                        help="How many json files to generate",
+                        type=int,
+                        default=files_count)
+    parser.add_argument('--file_name',
+                        help="Base file_name. If no prefix, final file name will be file_name.json. "
+                             "With prefix full file name will be file_name_file_prefix.json",
+                        type=str,
+                        default=file_name)
+    parser.add_argument('--file_prefix',
+                        help="What prefix for file name to use if more than 1 file needs to be generated",
+                        choices=prefixes,
+                        type=str)
+    parser.add_argument('--data_schema',
+                        help="It’s a string with json schema",
+                        type=str,
+                        default=data_schema)
+    parser.add_argument('--data_lines',
+                        help="Count of lines for each file",
+                        type=int,
+                        default=data_lines)
+    parser.add_argument('--clear_path',
+                        help="Flag to delete all files in path_to_save_files that match file_name before start.",
+                        default=clear_path,
+                        action='store_true')
+    parser.add_argument('--show_generated_data',
+                        help="If this flag is on, show generated data in console.",
+                        default=show_generated_data,
+                        action='store_true')
+    parser.add_argument('--show_write_in_file',
+                        help="If this flag is on, show log when data write in file.",
+                        default=show_write_in_file,
+                        action='store_true')
+    parser.add_argument('--show_generate_node_log',
+                        help="If this flag is on, node generation log.",
+                        default=show_generate_node_log,
+                        action='store_true')
+    parser.add_argument('--log_in_file',
+                        help="If this flag is on, enable logging in file.",
+                        default=log_in_file,
+                        action='store_true')
     args = parser.parse_args()
 
     if args.log_in_file:
@@ -95,6 +129,7 @@ def main():
 
 
 def read_json(json_schema):
+    """Read json from transferred arguments"""
     try:
         scheme = json.loads(json_schema)
         return scheme

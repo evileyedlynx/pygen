@@ -9,6 +9,7 @@ console_handler.setFormatter(console_formatter)
 
 
 def logging_in_file(log_name: str):
+    """Enable log write to file """
     file_handler = logging.FileHandler(f'{log_name}.log')
     file_handler.setLevel(logging.INFO)
     formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
