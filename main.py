@@ -99,7 +99,6 @@ def main():
                         log.info('Did not use prefix')
 
                 scheme = read_json(args.data_schema)
-#                if scheme is None:
                 if not scheme:
                     try:
                         with open(args.data_schema) as f:
@@ -117,7 +116,7 @@ def main():
                                 file_path = f'{args.path_to_save_files}/{file}'
                                 os.remove(file_path)
                                 log.info(f'{file_path} deleted')
-                    except Exception as e:
+                    except OSError as e:
                         log.error(f'Error when try remove file {file_path}: {e}')
 
                 generator = DataGenerator(scheme, args.path_to_save_files, args.files_count, filename, args.data_lines, args.show_generated_data, args.show_write_in_file, args.show_generate_node_log)

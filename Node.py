@@ -21,18 +21,19 @@ class Node:
         self._generate_node_log = generate_node_log
         self.node_name = node_name
         node_data = scheme.split(':')
-        self.node_type = node_data[0]
-        if node_data[0] == 'timestamp':
-            try:
+        try:
+            self.node_type = node_data[0]
+        except IndexError as e:
+            log.error(f'Array node_data is empty - {e}')
+
+        try:
+            if node_data[0] == 'timestamp':
                 self.data_generate_rule = node_data[1]
                 log.warning('timestamp type does not support any values and ignored')
-            except IndexError as e:
-                log.error(f'Index error when try set data_generate_rule: {e}')
-        else:
-            try:
+            else:
                 self.data_generate_rule = node_data[1]
-            except Exception as e:
-                log.error(f'Index error when try set data_generate_rule: {e}')
+        except IndexError as e:
+            log.error(f'Index error when trying to set data_generate_rule: {e}')
         log.info(f'{node_name} initialize successful')
 
     @property
@@ -83,66 +84,39 @@ class Node:
         result = None
         try:
             if self.node_type == 'timestamp':
-                result = time.time()
                 if self._generate_node_log:
                     log.generate_data(self.node_name, result)
-                return result
-        except Exception as e:
-            log.error(f'Error when try return time: {e}')
+                return time.time()
 
-        try:
             if self.data_generate_rule == '':
                 match self.node_type:
                     case 'int':
-                        result = None
                         if self._generate_node_log:
                             log.generate_data(self.node_name, result)
-                        return result
+                        return None
                     case 'str':
-                        result = ''
                         if self._generate_node_log:
                             log.generate_data(self.node_name, result)
-                        return result
+                        return ''
                     case _:
                         log.unknown_type(self.data_generate_rule)
-        except Exception as e:
-            log.error(f'Error when try get "None" or \'\' data: {e}')
 
-        try:
             if self.data_generate_rule == 'rand':
                 match self.node_type:
                     case 'str':
-                        result = str(uuid.uuid4())
+#                        result = str(uuid.uuid4())
                         if self._generate_node_log:
                             log.generate_data(self.node_name, result)
-                        return result
+                        return str(uuid.uuid4())
                     case 'int':
-                        result = random.randint(0, 10000)
+#                        result = random.randint(0, 10000)
                         if self._generate_node_log:
                             log.generate_data(self.node_name, result)
-                        return result
+                        return random.randint(0, 10000)
                     case _:
                         log.unknown_type(self.node_type)
-        except Exception as e:
-            log.error(f'Error when try get "rand" data: {e}')
-
-        try:
-            if isinstance(eval(self.data_generate_rule), list):
-                result = random.choice(eval(self.data_generate_rule))
-                match self.node_type:
-                    case 'str':
-                        if self._generate_node_log:
-                            log.generate_data(self.node_name, result)
-                        return str(result)
-                    case 'int':
-                        if self._generate_node_log:
-                            log.generate_data(self.node_name, result)
-                        return int(result)
-                    case _:
-                        log.unknown_type(self.data_generate_rule)
-        except Exception as e:
-            if self._generate_node_log:
-                log.info(f'Specified data type is not list: {e}')
+        except TypeError as e:
+            log.error(f'Error when try get time, None or \'\' or "rand" data: {e}')
 
         try:
             random_regex = re.findall(r'rand\([-+]?\d+, [-+]?\d+\)', self.data_generate_rule)
@@ -166,22 +140,37 @@ class Node:
         except Exception as e:
             log.error(f'Error when try generate "rand(x, y)" data: {e}')
 
-        match self.node_type:
-            case 'int':
-                try:
-                    result = int(self.data_generate_rule)
+        try:
+            if isinstance(eval(self.data_generate_rule), list):
+                result = random.choice(eval(self.data_generate_rule))
+                match self.node_type:
+                    case 'str':
+                        if self._generate_node_log:
+                            log.generate_data(self.node_name, result)
+                        return str(result)
+                    case 'int':
+                        if self._generate_node_log:
+                            log.generate_data(self.node_name, result)
+                        return int(result)
+                    case _:
+                        log.unknown_type(self.data_generate_rule)
+        except ValueError as e:
+            if self._generate_node_log:
+                log.info(f'Specified data type is not list: {e}')
+
+        try:
+            match self.node_type:
+                case 'int':
                     if self._generate_node_log:
                         log.generate_data(self.node_name, result)
-                    return result
-                except Exception as e:
-                    log.error(f'\'{self.data_generate_rule}\' cannot be converted to int type: {e}')
-            case 'str':
-                try:
-                    result = str(self.data_generate_rule)
+                    return int(self.data_generate_rule)
+                case 'str':
                     if self._generate_node_log:
                         log.generate_data(self.node_name, result)
-                    return result
-                except Exception as e:
-                    log.error(f'\'{self.data_generate_rule}\' cannot be converted to str type: {e}')
+                    return str(self.data_generate_rule)
+        except ValueError as e:
+            log.error(f'\'{self.data_generate_rule}\' cannot be converted to type: {e}')
+
+
 
         log.error('No data type found')
